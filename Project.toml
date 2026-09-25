@@ -1,0 +1,10 @@
+[deps]
+Comodo = "59095408-2761-4f7a-bdc2-044e78630271"
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Geogram = "01f21b16-7867-403b-a62b-5acce171fc87"
+GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+ImageCore = "a09fc81d-aa75-5fe9-8630-4744c3626534"
+MeshIO = "7269a6da-0436-5bbc-96c2-40638cbb6118"
+NearestNeighbors = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
+TiffImages = "731e570b-9d59-4bfa-96dc-6df516fadf69"
