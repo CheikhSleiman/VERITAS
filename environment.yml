@@ -1,0 +1,28 @@
+name: veritas
+channels:
+  - conda-forge
+dependencies:
+  # Core Python / FEniCSx stack validated for VERITAS
+  - python=3.12.13
+  - fenics-dolfinx=0.10.0
+  - mpi=1.0=mpich
+  - mpich=5.0.1
+  - mpi4py
+
+  # MFront / MGIS constitutive modelling
+  - mfront=5.1.0
+  - mgis=3.1.*
+
+  # dolfinx_materials runtime requirements used by VERITAS
+  - jax
+  - jaxlib
+
+  # Mesh / scientific I/O / visualisation
+  - gmsh
+  - meshio
+  - pyvista
+  - numpy
+  - scipy
+  - h5py
+  - matplotlib
+  - pip
