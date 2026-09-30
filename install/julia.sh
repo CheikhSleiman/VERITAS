@@ -24,7 +24,10 @@ actual="$(julia -e 'print(VERSION)')"
 # mesh/image functionality). Install the exact locked Git revision instead.
 COMODO_REPO="$COMODO_REPO" COMODO_COMMIT="$COMODO_COMMIT" \
   julia --project="$VERITAS_ROOT" --startup-file=no - <<'JL'
+# Download the existing manifest dependencies before changing package specs.
+# On a fresh depot, Git-tracked packages such as Geogram are not present yet.
 using Pkg
+Pkg.instantiate(; allow_autoprecomp=false)
 Pkg.add(url=ENV["COMODO_REPO"], rev=ENV["COMODO_COMMIT"])
 for pkg in (
     "GeometryBasics",
