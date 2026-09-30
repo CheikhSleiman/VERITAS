@@ -23,7 +23,8 @@ conda deactivate
 conda activate "$CONDA_ENV_NAME"
 
 expected="$CONDA_PREFIX/include"
-actual="$(tfel-config --include-path)"
+# tfel-config can append a space to its include-path output.
+actual="$(tfel-config --include-path | sed 's/[[:space:]]*$//')"
 [[ "$actual" == "$expected" ]] || die "TFEL include path '$actual' != '$expected'"
 
 python - <<'PY'

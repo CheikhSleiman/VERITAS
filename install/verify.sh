@@ -28,7 +28,8 @@ PY_MECH
 mpiexec -n 2 python -c \
   "from mpi4py import MPI; print('rank',MPI.COMM_WORLD.rank,'of',MPI.COMM_WORLD.size)"
 
-[[ "$(tfel-config --include-path)" == "$CONDA_PREFIX/include" ]] || \
+# Normalize trailing whitespace from tfel-config before comparison.
+[[ "$(tfel-config --include-path | sed 's/[[:space:]]*$//')" == "$CONDA_PREFIX/include" ]] || \
   die "TFEL include path is wrong"
 
 # Compile and load a real MFront behaviour. This verifies the entire
