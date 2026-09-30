@@ -3,6 +3,7 @@ set -Eeuo pipefail
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
 
 log "Building native Geogram/Vorpalite and wiring Geogram.jl"
+deactivate_conda
 resolve_source_locks
 
 SRC_ROOT="${VERITAS_SRC_ROOT:-$HOME/src}"

@@ -60,7 +60,7 @@ print("FEniCSx <-> dolfinx_materials <-> MGIS <-> MFront: OK")
 PY_LOAD
 )
 
-conda deactivate || true
+deactivate_conda
 export PATH="$HOME/.juliaup/bin:$PATH"
 
 julia --project="$VERITAS_ROOT" --startup-file=no - <<'JL_VERIFY'
@@ -115,6 +115,8 @@ PY_REPORT
   mfront --version
   echo "TFELHOME=$TFELHOME"
 
+  deactivate_conda
+  export PATH="$HOME/.juliaup/bin:$PATH"
   echo '[julia]'
   julia --version
   julia --project="$VERITAS_ROOT" --startup-file=no -e 'using Pkg; Pkg.status()'

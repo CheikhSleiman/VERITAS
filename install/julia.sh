@@ -3,6 +3,7 @@ set -Eeuo pipefail
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
 
 log "Installing/verifying Julia + VERITAS Julia dependencies"
+deactivate_conda
 resolve_source_locks
 
 export PATH="$HOME/.juliaup/bin:$PATH"

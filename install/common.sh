@@ -29,6 +29,25 @@ activate_veritas(){
   conda activate "$CONDA_ENV_NAME"
 }
 
+# Undo inherited or stacked Conda activations before native/Julia stages.
+# Each installer helper runs in its own process, so this does not change the
+# calling terminal's environment. Python helpers explicitly activate veritas.
+deactivate_conda(){
+  local previous_level
+  if [[ -n "${CONDA_PREFIX:-}" || "${CONDA_SHLVL:-0}" -gt 0 ]]; then
+    source_conda
+    while [[ "${CONDA_SHLVL:-0}" -gt 0 ]]; do
+      previous_level="$CONDA_SHLVL"
+      conda deactivate
+      [[ "${CONDA_SHLVL:-0}" -lt "$previous_level" ]] || \
+        die "Conda deactivation did not reduce CONDA_SHLVL"
+    done
+  fi
+  [[ -z "${CONDA_PREFIX:-}" ]] || \
+    die "Conda is still active: $CONDA_PREFIX"
+  hash -r
+}
+
 resolve_source_locks(){
   command -v git >/dev/null || die "git is required"
   mkdir -p "$LOCK_DIR"
