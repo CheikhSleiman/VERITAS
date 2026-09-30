@@ -4,7 +4,7 @@
 
 VERITAS is a modular computational framework for generating synthetic healthy and pathological vertebrae and studying vertebral failure through image-informed nonlinear finite element analysis. It combines controllable bone and lesion morphology, homogenisation of local bone volume fraction (BV/TV), and a Mazars-type continuum damage model. Compression and bending simulations provide mechanical capacity, displacement, damage and crack-opening fields to investigate the effects of lesion type, lesion location and cortical shell integrity.
 
-This repository implements the geometry and material-field pipeline in **Julia with Comodo**, coupled to **Python/FEniCSx and MFront** for the nonlinear mechanical analysis. Reusable functions are organised in `src/`, with case-specific inputs and execution scripts in `caseStudies/`.
+The geometry and material-field pipeline is implemented in [Julia](https://julialang.org/) using [COMODO](https://github.com/COMODO-research/Comodo.jl), alongside original functions and functions translated into Julia from the [GIBBON project](https://www.gibboncode.org/). The nonlinear mechanical analysis uses Python/[FEniCSx](https://fenicsproject.org/) coupled with MFront for the constitutive behaviour. Reusable functions are organised in `src/`, with case-specific inputs and execution scripts in `caseStudies/`.
 
 ## Representative results
 
