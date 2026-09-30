@@ -12,19 +12,19 @@ The following figures illustrate material-field construction and mechanical resp
 
 ### Figure 2: Image-informed material fields for healthy and pathological vertebrae
 
-![Reference, blastic and lytic vertebral models shown as image slices, clipped three-dimensional volumes and Young's modulus fields](docs/figures/image-informed-material-fields.png)
+<img src="docs/figures/image-informed-material-fields.png" alt="Reference, blastic and lytic vertebral models shown as image slices, clipped three-dimensional volumes and Young's modulus fields" width="750">
 
 Representative image slices show (a) the reference vertebra, (b) a blastic lesion and (c) a lytic lesion. Panels (d–f) show the corresponding clipped 3D image volumes, while (g–i) show the resulting Young's modulus fields obtained through image-informed homogenisation.
 
 ### Figure 3: Force–displacement response of the reference and pathological vertebral models under uniform compression.
 
-![Vertical reaction force versus prescribed displacement for the reference, blastic and lytic vertebral models under uniform compression](docs/figures/compression-force-displacement.png)
+<img src="docs/figures/compression-force-displacement.png" alt="Vertical reaction force versus prescribed displacement for the reference, blastic and lytic vertebral models under uniform compression" width="750">
 
 The curves show vertical reaction force against prescribed displacement for the reference vertebra, centred and left-sided blastic lesions, and lytic lesions with or without cortical shell thinning. They compare predicted stiffness, peak load-bearing capacity and post-peak degradation across the six configurations.
 
 ### Figure 4: Relative mechanical capacity across compression and bending load cases
 
-![Relative mechanical capacity of reference and pathological vertebrae under compression, sagittal flexion and extension, and left and right coronal bending](docs/figures/relative-mechanical-capacity.png)
+<img src="docs/figures/relative-mechanical-capacity.png" alt="Relative mechanical capacity of reference and pathological vertebrae under compression, sagittal flexion and extension, and left and right coronal bending" width="750">
 
 Relative mechanical capacity (RMC) compares the pathological models with the reference vertebra under compression, sagittal flexion, sagittal extension, and left and right coronal bending. Compression is assessed using peak reaction force, and bending using peak bending moment. The dashed reference profile corresponds to RMC = 1; values below or above one indicate reduced or increased mechanical capacity, respectively. These representative results are from the paper draft.
 
@@ -55,7 +55,7 @@ The Python stage reads the generated mesh and material fields and runs the nonli
 
 ### Figure 1: Overview of the VERITAS workflow from synthetic vertebra generation to image-informed nonlinear finite element analysis and mechanical risk profiling.
 
-![VERITAS workflow connecting synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing](docs/figures/veritas-workflow.png)
+<img src="docs/figures/veritas-workflow.png" alt="VERITAS workflow connecting synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing" width="600">
 
 The workflow connects synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing. The diagram is reproduced from the paper draft and depicts the original MATLAB/GIBBON implementation; the geometry and homogenisation stages in this repository use Julia/Comodo.
 
