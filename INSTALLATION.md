@@ -112,6 +112,8 @@ ldd src/finiteElement/libBehaviour.so
 
 ## 3. Install Julia packages
 
+Run Julia from a shell without an active Conda environment. If Conda is currently active, run `conda deactivate` first; repeat if environments are stacked, until `CONDA_PREFIX` is unset.
+
 Install [Juliaup](https://docs.julialang.org/en/v1/manual/installation/) and select the version used for VERITAS:
 
 ```bash
@@ -173,28 +175,31 @@ cd ~/VERITAS
 test -f caseStudies/reference/input/vertebra.stl
 test -f src/finiteElement/ConvertGmshToXdmf.py
 test -f src/finiteElement/libBehaviour.so
-conda activate veritas
-export VERITAS_PYTHON="$(command -v python)"
+test -f src/finiteElement/run_mazars.py
+export VERITAS_PYTHON="$HOME/miniforge3/envs/veritas/bin/python"
+test -x "$VERITAS_PYTHON"
 ```
 
-`VERITAS_PYTHON` tells the Julia mesh converter which Python interpreter contains `meshio`. The default resolver also checks `~/miniforge3/envs/veritas/bin/python`.
+`VERITAS_PYTHON` tells the Julia mesh converter which Python interpreter contains `meshio`. The default resolver checks `~/miniforge3/envs/veritas/bin/python`, so this explicit setting is optional for the standard installation. If Miniforge or the environment is installed elsewhere, use the full path of that environment's Python executable. The converter invokes Python directly; Conda activation is not required for the Julia stage.
 
 ## 6. Run the pipeline
 
-First generate the mesh and material fields:
+First generate the mesh and material fields using Julia, **without an active Conda environment**. Open a fresh shell, or deactivate Conda as described in Section 3.
+
+```bash
+cd ~/VERITAS
+julia --project=. caseStudies/reference/main.jl
+```
+
+The mesh converter uses the `veritas` Python interpreter directly, as described in Section 5.
+
+Under the working WSLg graphics configuration, `GALLIUM_DRIVER=d3d12 julia --project=. caseStudies/reference/main.jl` was used for accelerated GLMakie. The Julia process waits for its figure windows to close after the pipeline completes.
+
+Then **activate the `veritas` Conda environment** and run the FEniCSx/MFront stage:
 
 ```bash
 cd ~/VERITAS
 conda activate veritas
-export VERITAS_PYTHON="$(command -v python)"
-julia --project=. caseStudies/reference/main.jl
-```
-
-Under the working WSLg graphics configuration, `GALLIUM_DRIVER=d3d12 julia --project=. caseStudies/reference/main.jl` was used for accelerated GLMakie. The Julia process waits for its figure windows to close after the pipeline completes.
-
-Then run the FEniCSx/MFront stage:
-
-```bash
 python src/finiteElement/run_mazars.py --case-dir caseStudies/reference
 ```
 
@@ -203,7 +208,7 @@ The solver reads `mesh/` and `data/`, loads `libBehaviour.so` from beside `run_m
 ## Troubleshooting
 
 - **Vorpalite not found:** check `test -x "$VORPALITE"` or export the executable path shown above.
-- **Python converter not found:** make sure `src/finiteElement/ConvertGmshToXdmf.py` is present and `VERITAS_PYTHON` points to the active environment.
+- **Python converter not found:** make sure `src/finiteElement/ConvertGmshToXdmf.py` is present and `VERITAS_PYTHON` points to the `veritas` environment's Python executable. Activating Conda is not required for Julia's converter.
 - **XDMF/HDF5 read error:** keep `Tetra.xdmf` with `Tetra.h5`, and `Tri.xdmf` with `Tri.h5`.
 - **`libBehaviour.so` fails to load:** run `ldd src/finiteElement/libBehaviour.so`, activate `veritas`, and check `TFELHOME` and the installed MFront/MGIS versions.
 - **GLMakie window does not open under WSL:** use a WSLg session and try `GALLIUM_DRIVER=d3d12`.
