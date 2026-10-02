@@ -57,7 +57,7 @@ The Python stage reads the generated mesh and material fields and runs the nonli
 
 <img src="docs/figures/veritas-workflow.png" alt="VERITAS workflow connecting synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing" width="600">
 
-The workflow connects synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing. The diagram is reproduced from the paper draft and depicts the original MATLAB/GIBBON implementation; the geometry and homogenisation stages in this repository use Julia/Comodo.
+The workflow connects synthetic vertebra generation, image-informed homogenisation, nonlinear finite element analysis and post-processing. The diagram shows the Julia/COMODO geometry and homogenisation stages, their connection to FEniCSx/MFront analysis, and the post-processing workflow.
 
 ## Repository architecture
 
